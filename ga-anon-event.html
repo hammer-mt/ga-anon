@@ -2,9 +2,12 @@
 <!-- https://github.com/mjt145/ga-anon -->
 <script>
     var elemId = 'access-btn';
+    var evCategory = 'Simulator';
+    var evAction = 'Btn-Click';
+    var evLabel = 'Early-Access';
     var elem = document.getElementById(elemId);
     elem.addEventListener("click", function() {
-		const tID = "UA-181389077-1";
+	const tID = "UA-123456789-1";
         var source = "https://www.google-analytics.com/collect?v=1&t=event";
         source += "&tid="+tID;
         source += "&uid="+Math.random();
@@ -12,12 +15,15 @@
         source += "&dh="+window.location.hostname;
         source += "&dl="+encodeURIComponent(window.location.href);
         source += "&dt="+encodeURIComponent(document.title);
-        source += "&dr="+encodeURIComponent(document.referrer);
+        referrer = encodeURIComponent(localStorage.getItem('referrer') || "");
+        source += "&dr="+encodeURIComponent(referrer);
         source += "&ua="+encodeURIComponent(navigator.userAgent);
-        const urlParams = new URLSearchParams(window.location.search);
-        source += "&cs="+urlParams.get('utm_source');
-        source += "&cm="+urlParams.get('utm_medium');
-        source += "&cn="+urlParams.get('utm_campaign');
+        source += "&cs="+localStorage.getItem('utm_source') || '(direct)';
+        source += "&cm="+localStorage.getItem('utm_medium') || '(none)';
+        source += "&cn="+localStorage.getItem('utm_campaign') || '(not set)';
+        source += "&ec="+evCategory;
+        source += "&ea="+evAction;
+        source += "&el="+evLabel;
         source += "&z="+Math.random();
         var img = document.createElement('img'); 
         img.src = source;

@@ -6,21 +6,35 @@
     source += "&tid="+tID;
     source += "&uid="+Math.random();
     source += "&dp="+window.location.pathname;
-    source += "&dh="+window.location.hostname;
     source += "&dl="+encodeURIComponent(window.location.href);
     source += "&dt="+encodeURIComponent(document.title);
-    source += "&dr="+encodeURIComponent(document.referrer);
     source += "&ua="+encodeURIComponent(navigator.userAgent);
     const urlParams = new URLSearchParams(window.location.search);
-    source += "&cs="+urlParams.get('utm_source');
-    source += "&cm="+urlParams.get('utm_medium');
-    source += "&cn="+urlParams.get('utm_campaign');
+    var utm_source = urlParams.get('utm_source');
+    var utm_medium = urlParams.get('utm_medium');
+    var utm_campaign = urlParams.get('utm_campaign');
+    var referrer = document.referrer;
+    var hostname = window.location.hostname;
+    if(utm_campaign) {
+        localStorage.setItem('utm_source', utm_source);
+        localStorage.setItem('utm_medium', utm_medium);
+        localStorage.setItem('utm_campaign', utm_campaign);
+    }
+    if(referrer.includes(hostname)) {
+        referrer = localStorage.getItem('referrer') || "";
+    } else {
+        localStorage.setItem('referrer', referrer);
+    }
+    source += "&cs="+localStorage.getItem('utm_source') || '(direct)';
+    source += "&cm="+localStorage.getItem('utm_medium') || '(none)';
+    source += "&cn="+localStorage.getItem('utm_campaign') || '(not set)';
+    source += "&dr="+encodeURIComponent(referrer);
+    source += "&dh="+encodeURIComponent(hostname);
     source += "&z="+Math.random();
-    source += "&aip=1";
     var img = document.createElement('img'); 
     img.src = source;
     img.width = "1";
     img.height = "1";
     img.style.display = "none";
-    document.body.appendChild(img);
+    document.body.appendChild(img); 
 </script>

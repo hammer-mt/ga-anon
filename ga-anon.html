@@ -1,0 +1,28 @@
+<img src="https://www.google-analytics.com/collect?v=1&t=pageview&tid={{GA ID}}&uid=anonymous&dp={{Page Path}}&dh={{Page Hostname}}&dl={{URL location encoded}}&dt={{Document Title encoded}}&dr={{Referrer encoded}}&ua={{User Agent encoded}}&cs={{utm_source}}&cm={{utm_medium}}&cn={{utm_campaign}}&z={{Random number}}" width='1' height='1' style='display:none'/>
+
+
+
+"https://www.google-analytics.com/collect?
+
+
+<script>
+    var source = "https://www.google-analytics.com/collect?v=1&t=pageview&tid=UA-181389077-1";
+    source += "&uid="+Math.random();
+    source += "&dp="+window.location.pathname;
+    source += "&dh="+window.location.hostname;
+    source += "&dl="+encodeURIComponent(window.location.href);
+    source += "&dt="+encodeURIComponent(document.title);
+    source += "&dr="+encodeURIComponent(document.referrer);
+    source += "&ua="+encodeURIComponent(navigator.userAgent);
+    const urlParams = new URLSearchParams(window.location.search);
+    source += "&cs="+urlParams.get('utm_source');
+    source += "&cm="+urlParams.get('utm_medium');
+    source += "&cn="+urlParams.get('utm_campaign');
+    source += "&z="+Math.random();
+    var img = document.createElement('img'); 
+    img.src = source;
+    img.width = "1";
+    img.height = "1";
+    img.style.display = "none";
+    document.body.appendChild(img); 
+</script>

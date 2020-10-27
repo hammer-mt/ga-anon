@@ -14,10 +14,11 @@
     source += "&cm="+urlParams.get('utm_medium');
     source += "&cn="+urlParams.get('utm_campaign');
     source += "&z="+Math.random();
+    source += "&aip=1";
     var img = document.createElement('img'); 
     img.src = source;
     img.width = "1";
     img.height = "1";
     img.style.display = "none";
-    document.body.appendChild(img); 
+    document.body.appendChild(img);
 </script>

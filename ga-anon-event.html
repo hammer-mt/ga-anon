@@ -1,0 +1,27 @@
+<script>
+    var elemId = 'access-btn';
+    var elem = document.getElementById(elemId);
+    elem.addEventListener("click", function() {
+		const tID = "UA-181389077-1";
+        var source = "https://www.google-analytics.com/collect?v=1&t=event";
+        source += "&tid="+tID;
+        source += "&uid="+Math.random();
+        source += "&dp="+window.location.pathname;
+        source += "&dh="+window.location.hostname;
+        source += "&dl="+encodeURIComponent(window.location.href);
+        source += "&dt="+encodeURIComponent(document.title);
+        source += "&dr="+encodeURIComponent(document.referrer);
+        source += "&ua="+encodeURIComponent(navigator.userAgent);
+        const urlParams = new URLSearchParams(window.location.search);
+        source += "&cs="+urlParams.get('utm_source');
+        source += "&cm="+urlParams.get('utm_medium');
+        source += "&cn="+urlParams.get('utm_campaign');
+        source += "&z="+Math.random();
+        var img = document.createElement('img'); 
+        img.src = source;
+        img.width = "1";
+        img.height = "1";
+        img.style.display = "none";
+        document.body.appendChild(img);
+	}); 
+</script>

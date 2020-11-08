@@ -1,35 +1,38 @@
 <!-- Code to fire a GA event on button click --> 
 <!-- https://github.com/mjt145/ga-anon -->
 <script>
-    var elemId = 'access-btn';
-    var evCategory = 'Simulator';
-    var evAction = 'Btn-Click';
-    var evLabel = 'Early-Access';
-    var elem = document.getElementById(elemId);
-    elem.addEventListener("click", function() {
-	const tID = "UA-123456789-1";
-        var source = "https://www.google-analytics.com/collect?v=1&t=event";
-        source += "&tid="+tID;
-        source += "&uid="+Math.random();
-        source += "&dp="+window.location.pathname;
-        source += "&dh="+window.location.hostname;
-        source += "&dl="+encodeURIComponent(window.location.href);
-        source += "&dt="+encodeURIComponent(document.title);
-        referrer = encodeURIComponent(localStorage.getItem('referrer') || "");
-        source += "&dr="+encodeURIComponent(referrer);
-        source += "&ua="+encodeURIComponent(navigator.userAgent);
-        source += "&cs="+localStorage.getItem('utm_source') || '(direct)';
-        source += "&cm="+localStorage.getItem('utm_medium') || '(none)';
-        source += "&cn="+localStorage.getItem('utm_campaign') || '(not set)';
-        source += "&ec="+evCategory;
-        source += "&ea="+evAction;
-        source += "&el="+evLabel;
-        source += "&z="+Math.random();
-        var img = document.createElement('img'); 
-        img.src = source;
-        img.width = "1";
-        img.height = "1";
-        img.style.display = "none";
-        document.body.appendChild(img);
-	}); 
+document.addEventListener('DOMContentLoaded', function() {
+	var elemId = 'access-btn';
+  var evCategory = 'Simulator';
+  var evAction = 'Btn-Click';
+  var evLabel = 'Early-Access';
+  var elem = document.getElementById(elemId);
+  elem.addEventListener("click", function() {
+    const tID = "UA-181389077-1";
+    var source = "https://www.google-analytics.com/collect?v=1&t=event";
+    source += "&tid="+tID;
+    source += "&cid=555";
+    source += "&dp="+window.location.pathname;
+    source += "&dh="+window.location.hostname;
+    source += "&dl="+encodeURIComponent(window.location.href);
+    source += "&dt="+encodeURIComponent(document.title);
+    referrer = encodeURIComponent(localStorage.getItem('referrer') || "");
+    source += "&dr="+encodeURIComponent(referrer);
+    source += "&ua="+encodeURIComponent(navigator.userAgent);
+    source += "&cs="+localStorage.getItem('utm_source') || '(direct)';
+    source += "&cm="+localStorage.getItem('utm_medium') || '(none)';
+    source += "&cn="+localStorage.getItem('utm_campaign') || '(not set)';
+    source += "&ec="+evCategory;
+    source += "&ea="+evAction;
+    source += "&el="+evLabel;
+    source += "&z="+Math.random();
+    var img = document.createElement('img'); 
+    img.src = source;
+    img.width = "1";
+    img.height = "1";
+    img.style.display = "none";
+    document.body.appendChild(img);
+  }); 
+}, false);
+    
 </script>
